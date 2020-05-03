@@ -1,0 +1,54 @@
+minimum_pre_commit_version: "2.2.0"
+# default_stages: [commit, push]
+# fail_fast: true
+repos:
+  # Git-related
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0 # Use the ref you want to point at
+    hooks:
+      - id: forbid-new-submodules
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 1.11.0 # Use the ref you want to point at
+    hooks:
+      - id: git-dirty
+
+  # Reformatting (should generally come before any file format or other checks, because reformatting can change things)
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0 # Use the ref you want to point at
+    hooks:
+      - id: trailing-whitespace
+      - id: pretty-format-json
+        args: [--autofix, --no-sort-keys]
+        exclude: sample_waveform_data/
+
+  - repo: https://github.com/prettier/prettier
+    rev: "2.0.4" # pick a git hash / tag to point to
+    hooks:
+      - id: prettier
+        # args: [--vue-indent-script-and-style true]
+        exclude: sample_waveform_data/
+
+  # Safety/Security Issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0 # Use the ref you want to point at
+    hooks:
+      - id: detect-private-key
+
+  # Invalid File Checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0 # Use the ref you want to point at
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=123"]
+        exclude: package-lock.json|tests/sample_waveform_data/mantarray/
+      - id: check-json
+      - id: check-yaml
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+  # Linting
+  - repo: https://github.com/NanoSurface-Biomedical/pre-commit-pylint
+    rev: "d805cc60bb5290c2f1ca869d5f1d5e2be720f3fa" # pick a git hash / tag to point to
+    hooks:
+      - id: vuejs-check-no-console-log-statments
