@@ -6,6 +6,10 @@ module.exports = {
     title: "Scientific Consulting by Eli Fine",
     meta: [{ charset: "utf-8" }],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [
+      { src: "@assets/js/jquery.min.js" },
+      { src: "@assets/js/image_slide.js" },
+    ],
   },
   /*
    ** Customize the progress bar color
@@ -34,5 +38,8 @@ module.exports = {
     port: 8080, // default: 3000
     host: "localhost", // default: localhost
   },
-  css: [],
+  css: [
+    // CSS file in the project
+    "@/assets/css/main.css",
+  ],
 };
