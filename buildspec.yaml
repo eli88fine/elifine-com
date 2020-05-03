@@ -43,8 +43,8 @@ phases:
       - echo "Generating static files for deployment"
       - npm run build
       - echo "Listing changes that would be made in deployment to S3"
-      - aws s3 sync --delete dist/ s3://staging-$DESTINATION_BUCKET_NAME --dryrun
+      - aws s3 sync --delete dist/ s3://$DESTINATION_BUCKET_NAME #--dryrun
       # Only run the following command if the APPLY_TAG environmental variable is set (i.e. =1) https://stackoverflow.com/questions/39619956/short-way-to-run-command-if-variable-is-set  (extra outer parentheses needed to make YAML parser happy)
       # Colon (or maybe semi-colon) is causing issue with CodeBuild YAML parser, so needed to wrap whole command in single quote
-      - 'if [ "$DEPLOYMENT_STAGE" = "PRODUCTION" ] ; then if [ "$SHA_OF_LOCAL_COMMIT" = "$SHA_OF_REMOTE_MASTER" ] || [ "$SHA_OF_LOCAL_COMMIT" = "$SHA_OF_REMOTE_DEVELOPMENT" ]; then echo "Current branch matches SHA of remote master or development so deployment is allowed"; else echo "Current branch is not master or development--deployment to Production is NOT ALLOWED. SHA of current commit is $SHA_OF_LOCAL_COMMIT but SHA of remote master is $SHA_OF_REMOTE_MASTER and SHA of remote development is $SHA_OF_REMOTE_DEVELOPMENT" && exit 1; fi && echo "Deploying to S3" && aws s3 sync --delete dist/ s3://$DESTINATION_BUCKET_NAME ; fi'
+      # - 'if [ "$DEPLOYMENT_STAGE" = "PRODUCTION" ] ; then if [ "$SHA_OF_LOCAL_COMMIT" = "$SHA_OF_REMOTE_MASTER" ] || [ "$SHA_OF_LOCAL_COMMIT" = "$SHA_OF_REMOTE_DEVELOPMENT" ]; then echo "Current branch matches SHA of remote master or development so deployment is allowed"; else echo "Current branch is not master or development--deployment to Production is NOT ALLOWED. SHA of current commit is $SHA_OF_LOCAL_COMMIT but SHA of remote master is $SHA_OF_REMOTE_MASTER and SHA of remote development is $SHA_OF_REMOTE_DEVELOPMENT" && exit 1; fi && echo "Deploying to S3" && aws s3 sync --delete dist/ s3://$DESTINATION_BUCKET_NAME ; fi'
       - echo "Build completed on $(date)"
