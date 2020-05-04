@@ -2,7 +2,7 @@
   <div id="main">
     <div class="content_item">
       <div class="wide_content_container">
-        <h1>"Dry-Lab" <i>In Silico</i> Analysis</h1>
+        <h1>&ldquo;Dry-Lab" <i>In Silico</i> Analysis</h1>
         <!--<p></p>-->
       </div>
       <div class="content_container">

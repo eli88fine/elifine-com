@@ -30,27 +30,25 @@
       </nav>
     </header>
     <div id="slideshow_container">
-      <div class="slideshow">
-        <ul class="slideshow">
-          <li class="show">
-            <img
+      <center>
+        <swiper ref="mySwiper" :options="swiperOptions">
+          <swiper-slide
+            ><img
               width="950"
               height="250"
               src="areas_of_expertise.png"
               alt="Areas of expertise"
-            />
-          </li>
-          <li>
-            <img
+          /></swiper-slide>
+          <swiper-slide
+            ><img
               width="950"
               height="250"
               src="SMRT_abstract.png"
               alt="Genome editing analysis pipeline"
-            />
-          </li>
-        </ul>
-      </div>
-      <!--close slideshow-->
+          /></swiper-slide>
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
+      </center>
     </div>
     <!--close slideshow_container-->
     <div id="site_content">
@@ -107,5 +105,45 @@
     </footer>
   </div>
 </template>
+<script>
+import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
 
+export default {
+  name: "carrousel",
+  data() {
+    return {
+      swiperOptions: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+          delay: 5000,
+        },
+        speed: 2000,
+
+        // Some Swiper option/callback...
+      },
+    };
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    },
+  },
+  mounted() {
+    // console.log('Current Swiper instance object', this.swiper)
+    // this.swiper.slideTo(3, 1000, false)
+  },
+  components: { Swiper, SwiperSlide },
+};
+</script>
 <style></style>
