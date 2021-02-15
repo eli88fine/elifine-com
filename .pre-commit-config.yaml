@@ -4,26 +4,26 @@ minimum_pre_commit_version: "2.2.0"
 repos:
   # Git-related
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0 # Use the ref you want to point at
+    rev: v3.4.0 # Use the ref you want to point at
     hooks:
       - id: forbid-new-submodules
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 1.11.0 # Use the ref you want to point at
+    rev: 2.1.4 # Use the ref you want to point at
     hooks:
       - id: git-dirty
 
   # Reformatting (should generally come before any file format or other checks, because reformatting can change things)
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0 # Use the ref you want to point at
+    rev: v3.4.0 # Use the ref you want to point at
     hooks:
       - id: trailing-whitespace
       - id: pretty-format-json
         args: [--autofix, --no-sort-keys]
         exclude: sample_waveform_data/
 
-  - repo: https://github.com/prettier/prettier
-    rev: "2.0.4" # pick a git hash / tag to point to
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v2.2.1" # pick a git hash / tag to point to
     hooks:
       - id: prettier
         # args: [--vue-indent-script-and-style true]
@@ -31,13 +31,13 @@ repos:
 
   # Safety/Security Issues
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0 # Use the ref you want to point at
+    rev: v3.4.0 # Use the ref you want to point at
     hooks:
       - id: detect-private-key
 
   # Invalid File Checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0 # Use the ref you want to point at
+    rev: v3.4.0 # Use the ref you want to point at
     hooks:
       - id: check-added-large-files
         args: ["--maxkb=123"]
